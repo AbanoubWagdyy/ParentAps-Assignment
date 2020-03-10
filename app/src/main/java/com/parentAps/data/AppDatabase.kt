@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.parentAps.ui.homepage.data.HomepageDao
+import com.parentAps.ui.homepage.data.WeatherDao
 import com.parentAps.ui.homepage.data.model.Weather
 
 @Database(
@@ -15,7 +15,7 @@ import com.parentAps.ui.homepage.data.model.Weather
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun homepageDao(): HomepageDao
+    abstract fun homepageDao(): WeatherDao
 
     companion object {
         @Volatile
@@ -26,9 +26,6 @@ abstract class AppDatabase : RoomDatabase() {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
-
-        // Create and pre-populate the database. See this article for more details:
-        // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, "weather-db")
                 .allowMainThreadQueries()

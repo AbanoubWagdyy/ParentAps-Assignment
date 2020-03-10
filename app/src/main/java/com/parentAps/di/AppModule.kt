@@ -17,6 +17,22 @@ import javax.inject.Singleton
 @Module(includes = [ViewModelModule::class, CoreDataModule::class])
 class AppModule {
 
+    private fun createRetrofit(
+        okhttpClient: OkHttpClient,
+        converterFactory: GsonConverterFactory
+    ): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(ENDPOINT)
+            .client(okhttpClient)
+            .addConverterFactory(converterFactory)
+            .build()
+    }
+
+    private fun <T> provideService(okhttpClient: OkHttpClient,
+                                   converterFactory: GsonConverterFactory, clazz: Class<T>): T {
+        return createRetrofit(okhttpClient, converterFactory).create(clazz)
+    }
+
     @Singleton
     @Provides
     fun provideWeatherService(okhttpClient: OkHttpClient,
@@ -25,7 +41,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideLegoSetRemoteDataSource(weatherService: WeatherService)
+    fun provideWeatherSetRemoteDataSource(weatherService: WeatherService)
             = WeatherRemoteDataSource(weatherService)
 
     @Singleton
@@ -34,25 +50,9 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideLegoSetDao(db: AppDatabase) = db.homepageDao()
+    fun provideWeatherSetDao(db: AppDatabase) = db.homepageDao()
 
     @CoroutineScropeIO
     @Provides
     fun provideCoroutineScopeIO() = CoroutineScope(Dispatchers.IO)
-
-    private fun createRetrofit(
-            okhttpClient: OkHttpClient,
-            converterFactory: GsonConverterFactory
-    ): Retrofit {
-        return Retrofit.Builder()
-                .baseUrl(ENDPOINT)
-                .client(okhttpClient)
-                .addConverterFactory(converterFactory)
-                .build()
-    }
-
-    private fun <T> provideService(okhttpClient: OkHttpClient,
-            converterFactory: GsonConverterFactory, clazz: Class<T>): T {
-        return createRetrofit(okhttpClient, converterFactory).create(clazz)
-    }
 }

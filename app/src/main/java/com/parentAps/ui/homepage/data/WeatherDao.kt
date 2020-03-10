@@ -6,7 +6,7 @@ import androidx.room.OnConflictStrategy
 import com.parentAps.ui.homepage.data.model.Weather
 
 @Dao
-interface HomepageDao {
+interface WeatherDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(weather: Weather)
 }
