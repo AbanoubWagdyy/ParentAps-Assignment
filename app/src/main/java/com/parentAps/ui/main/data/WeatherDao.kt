@@ -10,7 +10,7 @@ import com.parentAps.ui.main.data.model.Weather
 @Dao
 interface WeatherDao {
 
-    @Query("SELECT * FROM weather WHERE city_name = :cityId")
+    @Query("SELECT * FROM weather WHERE cityName = :cityId")
     fun getCityWeather(cityId: String): LiveData<List<Weather>>
 
     @Query("SELECT * FROM weather")

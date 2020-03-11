@@ -1,19 +1,20 @@
 package com.parentAps.ui.main.data.model
 
+import androidx.annotation.NonNull
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverters
 
-@Entity
-class Weather {
-
+@Entity(tableName = "weather")
+data class Weather(
     @PrimaryKey
-    var city_id: String? = ""
-    var city_name: String? = ""
-    var country: String? = ""
-    var latitude: Double? = 0.0
-    var longitude: Double? = 0.0
+    @NonNull
+    var cityId: String,
+    var cityName: String?,
+    var country: String?,
+    var latitude: Double?,
+    var longitude: Double?,
+    var weatherInfoList: String?
 
-    @TypeConverters
-    var weatherInfo: List<WeatherInfo>? = null
+) {
+    constructor() : this("", "", "", 0.0, 0.0, "")
 }

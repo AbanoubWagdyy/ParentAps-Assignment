@@ -1,9 +1,14 @@
 package com.parentAps.di
 
 import android.app.Application
+import android.util.Log
+import com.google.gson.Gson
 import com.parentAps.BuildConfig.ENDPOINT
+import com.parentAps.R
+import com.parentAps.api.WeatherResponse.City
 import com.parentAps.api.WeatherService
 import com.parentAps.data.AppDatabase
+import com.parentAps.data.extensions.getRawTextFile
 import com.parentAps.ui.main.data.WeatherRemoteDataSource
 import dagger.Module
 import dagger.Provides
@@ -28,21 +33,24 @@ class AppModule {
             .build()
     }
 
-    private fun <T> provideService(okhttpClient: OkHttpClient,
-                                   converterFactory: GsonConverterFactory, clazz: Class<T>): T {
+    private fun <T> provideService(
+        okhttpClient: OkHttpClient,
+        converterFactory: GsonConverterFactory, clazz: Class<T>
+    ): T {
         return createRetrofit(okhttpClient, converterFactory).create(clazz)
     }
 
     @Singleton
     @Provides
-    fun provideWeatherService(okhttpClient: OkHttpClient,
-                           converterFactory: GsonConverterFactory
+    fun provideWeatherService(
+        okhttpClient: OkHttpClient,
+        converterFactory: GsonConverterFactory
     ) = provideService(okhttpClient, converterFactory, WeatherService::class.java)
 
     @Singleton
     @Provides
-    fun provideWeatherSetRemoteDataSource(weatherService: WeatherService)
-            = WeatherRemoteDataSource(weatherService)
+    fun provideWeatherSetRemoteDataSource(weatherService: WeatherService) =
+        WeatherRemoteDataSource(weatherService)
 
     @Singleton
     @Provides
@@ -51,6 +59,13 @@ class AppModule {
     @Singleton
     @Provides
     fun provideWeatherSetDao(db: AppDatabase) = db.weatherDao()
+
+    @Singleton
+    @Provides
+    fun provideCityList(app: Application): List<City> {
+        val txtFile = app.resources?.getRawTextFile(R.raw.city)
+        return Gson().fromJson(txtFile, Array<City>::class.java).asList()
+    }
 
     @CoroutineScropeIO
     @Provides

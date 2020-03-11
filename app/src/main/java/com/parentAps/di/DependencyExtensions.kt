@@ -1,6 +1,5 @@
 package com.parentAps.di
 
-import android.content.SharedPreferences
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModel

@@ -6,5 +6,5 @@ class WeatherInfo {
     var weatherIcon: String = ""
     var windSpeed: Double = 0.0
     var windDeg: Double = 0.0
-    var dt_txt: String = ""
+    var dtTxt: String = ""
 }

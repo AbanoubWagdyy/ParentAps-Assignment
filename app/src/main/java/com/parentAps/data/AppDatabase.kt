@@ -12,7 +12,6 @@ import com.parentAps.ui.main.data.model.Weather
     entities = [Weather::class],
     version = 1, exportSchema = false
 )
-@TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun weatherDao(): WeatherDao

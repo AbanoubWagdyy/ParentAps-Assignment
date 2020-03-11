@@ -19,7 +19,7 @@ android {
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField 'String', 'ENDPOINT', "\"https://samples.openweathermap.org/data/2.5/\""
+        buildConfigField 'String', 'ENDPOINT', "\"https://api.openweathermap.org/data/2.5/\""
     }
 
     buildTypes {
