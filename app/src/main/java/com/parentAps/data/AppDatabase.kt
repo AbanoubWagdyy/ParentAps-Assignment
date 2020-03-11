@@ -5,8 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.parentAps.ui.homepage.data.WeatherDao
-import com.parentAps.ui.homepage.data.model.Weather
+import com.parentAps.ui.main.data.WeatherDao
+import com.parentAps.ui.main.data.model.Weather
 
 @Database(
     entities = [Weather::class],
@@ -26,6 +26,7 @@ abstract class AppDatabase : RoomDatabase() {
                 instance ?: buildDatabase(context).also { instance = it }
             }
         }
+
         private fun buildDatabase(context: Context): AppDatabase {
             return Room.databaseBuilder(context, AppDatabase::class.java, "weather-db")
                 .allowMainThreadQueries()

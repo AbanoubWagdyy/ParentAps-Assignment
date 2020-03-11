@@ -1,4 +1,4 @@
-package com.parentAps.ui.homepage.data.model
+package com.parentAps.ui.main.data.model
 
 data class Main(
     val humidity: Int,

@@ -1,7 +1,8 @@
 package com.parentAps.di
 
 import androidx.lifecycle.ViewModel
-import com.parentAps.ui.homepage.ui.WeatherViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.parentAps.ui.main.ui.WeatherViewModel
 
 import dagger.Binds
 import dagger.Module
@@ -13,5 +14,8 @@ abstract class ViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(WeatherViewModel::class)
-    abstract fun bindHomepageViewModel(viewModel: WeatherViewModel): ViewModel
+    abstract fun bindWeatherViewModel(viewModel: WeatherViewModel): ViewModel
+
+    @Binds
+    abstract fun bindViewModelFactory(factory: ViewModelFactory): ViewModelProvider.Factory
 }

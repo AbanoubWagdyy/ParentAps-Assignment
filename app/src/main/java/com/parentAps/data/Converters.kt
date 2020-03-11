@@ -2,7 +2,7 @@ package com.parentAps.data
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
-import com.parentAps.ui.homepage.data.model.Weather
+import com.parentAps.ui.main.data.model.Weather
 
 class Converters {
 

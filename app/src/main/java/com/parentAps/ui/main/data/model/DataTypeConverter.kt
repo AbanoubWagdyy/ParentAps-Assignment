@@ -1,4 +1,4 @@
-package com.parentAps.ui.homepage.data.model
+package com.parentAps.ui.main.data.model
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

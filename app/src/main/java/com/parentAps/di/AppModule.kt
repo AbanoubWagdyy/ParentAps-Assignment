@@ -4,7 +4,7 @@ import android.app.Application
 import com.parentAps.BuildConfig.ENDPOINT
 import com.parentAps.api.WeatherService
 import com.parentAps.data.AppDatabase
-import com.parentAps.ui.homepage.data.WeatherRemoteDataSource
+import com.parentAps.ui.main.data.WeatherRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope

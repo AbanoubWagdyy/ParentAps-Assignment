@@ -11,9 +11,6 @@ import okhttp3.logging.HttpLoggingInterceptor.Level.NONE
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
-/**
- * Dagger module to provide core data functionality.
- */
 @Module
 class CoreDataModule {
 

@@ -8,6 +8,7 @@ import dagger.android.HasActivityInjector
 import javax.inject.Inject
 
 class App : Application(), HasActivityInjector {
+
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 

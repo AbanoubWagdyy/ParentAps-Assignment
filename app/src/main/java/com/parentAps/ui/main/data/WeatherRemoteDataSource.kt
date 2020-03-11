@@ -1,4 +1,4 @@
-package com.parentAps.ui.homepage.data
+package com.parentAps.ui.main.data
 
 import com.parentAps.api.BaseDataSource
 import com.parentAps.api.WeatherService

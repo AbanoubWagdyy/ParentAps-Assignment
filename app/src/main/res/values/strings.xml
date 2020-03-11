@@ -2,4 +2,5 @@
     <string name="app_name">ParentAps</string>
     <string name="city_name">City Name ....</string>
     <string name="search">Search</string>
+    <string name="view_homepage_cities">View Saved Weather</string>
 </resources>
