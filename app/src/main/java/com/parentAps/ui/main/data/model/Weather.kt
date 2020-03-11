@@ -1,26 +1,19 @@
 package com.parentAps.ui.main.data.model
 
-import androidx.room.*
-import com.google.gson.annotations.SerializedName
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 
-@Entity(tableName = "weather")
-data class Weather(
+@Entity
+class Weather {
+
     @PrimaryKey
-    @field:SerializedName("id")
-    val id: Int,
-    val base: String,
-    val cod: Int,
-    val dt: Int,
-    val name: String,
-    val visibility: Int,
-    @Embedded
-    val wind: Wind,
-    @Embedded
-    val clouds: Clouds,
-    @Embedded
-    val coord: Coord,
-    @Embedded
-    val main: Main,
-    @Embedded
-    val sys: Sys
-)
+    var city_id: String? = ""
+    var city_name: String? = ""
+    var country: String? = ""
+    var latitude: Double? = 0.0
+    var longitude: Double? = 0.0
+
+    @TypeConverters
+    var weatherInfo: List<WeatherInfo>? = null
+}

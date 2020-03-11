@@ -15,7 +15,7 @@ import com.parentAps.ui.main.data.model.Weather
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
 
-    abstract fun homepageDao(): WeatherDao
+    abstract fun weatherDao(): WeatherDao
 
     companion object {
         @Volatile

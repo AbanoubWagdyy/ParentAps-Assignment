@@ -14,12 +14,15 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
+import com.google.gson.Gson
 import com.parentAps.R
+import com.parentAps.api.WeatherResponse.City
 import com.parentAps.di.Injectable
 import com.parentAps.di.injectViewModel
 import kotlinx.android.synthetic.main.activity_homepage.*
 import javax.inject.Inject
 import com.parentAps.data.Result
+import com.parentAps.data.extensions.getRawTextFile
 import com.parentAps.data.extensions.hide
 import com.parentAps.data.extensions.show
 import com.parentAps.ui.homepageWeatherList.HomepageWeatherListActivity
@@ -49,6 +52,9 @@ class WeatherActivity : AppCompatActivity(), Injectable {
             } else {
                 initializeListeners()
             }
+
+            val txtFile = resources.getRawTextFile(R.raw.city)
+            val citiesList = Gson().fromJson(txtFile, Array<City>::class.java).asList()
         }
     }
 
@@ -58,7 +64,6 @@ class WeatherActivity : AppCompatActivity(), Injectable {
             viewModel.getWeather(etSearch.text.toString()).observe(this, Observer { result ->
                 when (result.status) {
                     Result.Status.SUCCESS -> {
-                        viewModel.saveResult(result.data)
                         Log.d("result", result.data.toString())
                         val intent =
                             Intent(this@WeatherActivity, WeatherDetailsActivity::class.java)

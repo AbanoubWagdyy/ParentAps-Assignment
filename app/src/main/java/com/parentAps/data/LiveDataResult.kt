@@ -20,14 +20,14 @@ fun <T, A> resultLiveData(
 ): LiveData<Result<T>> =
     liveData(Dispatchers.IO) {
         emit(Result.showloading<T>())
-        val source = databaseQuery.invoke().map { Result.success(it) }
-        emitSource(source)
         val responseStatus = networkCall.invoke()
-        emit(Result.hideloading<T>())
         if (responseStatus.status == Result.Status.SUCCESS) {
+            emit(Result.hideloading<T>())
             saveCallResult(responseStatus.data!!)
         } else if (responseStatus.status == Result.Status.ERROR) {
             emit(Result.error<T>(responseStatus.message!!))
+            val source = databaseQuery.invoke().map { Result.success(it) }
+            emit(Result.hideloading<T>())
             emitSource(source)
         }
     }

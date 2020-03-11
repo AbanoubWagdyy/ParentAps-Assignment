@@ -12,8 +12,4 @@ class WeatherViewModel @Inject constructor(val mRepository: WeatherRepository) :
     fun getWeather(city: String): LiveData<Result<List<Weather>>> {
         return mRepository.getWeather(city)
     }
-
-    fun saveResult(data: List<Weather>?) {
-        mRepository.saveWeatherForDetails(data)
-    }
 }

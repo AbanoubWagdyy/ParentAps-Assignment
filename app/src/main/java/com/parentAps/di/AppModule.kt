@@ -50,7 +50,7 @@ class AppModule {
 
     @Singleton
     @Provides
-    fun provideWeatherSetDao(db: AppDatabase) = db.homepageDao()
+    fun provideWeatherSetDao(db: AppDatabase) = db.weatherDao()
 
     @CoroutineScropeIO
     @Provides
