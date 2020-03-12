@@ -8,10 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.Log
-import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,7 +23,6 @@ import com.parentAps.data.extensions.hideKeyboard
 import com.parentAps.data.extensions.show
 import com.parentAps.di.Injectable
 import com.parentAps.di.injectViewModel
-import com.parentAps.ui.homepageWeatherList.HomepageWeatherListActivity
 import com.parentAps.ui.weatherDetails.WeatherDetailsActivity
 import kotlinx.android.synthetic.main.activity_weather.*
 import javax.inject.Inject
@@ -100,11 +96,6 @@ class WeatherActivity : AppCompatActivity(), Injectable {
                         }
                     }
                 })
-        }
-        viewSavedWeather.setOnClickListener {
-            val intent =
-                Intent(this@WeatherActivity, HomepageWeatherListActivity::class.java)
-            startActivity(intent)
         }
     }
 

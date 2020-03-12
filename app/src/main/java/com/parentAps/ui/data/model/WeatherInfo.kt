@@ -1,4 +1,4 @@
-package com.parentAps.ui.main.data.model
+package com.parentAps.ui.data.model
 
 class WeatherInfo {
     var weatherMain: String = ""

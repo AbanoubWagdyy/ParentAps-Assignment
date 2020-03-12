@@ -1,7 +1,6 @@
 package com.parentAps.di
 
 import android.app.Application
-import android.util.Log
 import com.google.gson.Gson
 import com.parentAps.BuildConfig.ENDPOINT
 import com.parentAps.R
@@ -9,7 +8,7 @@ import com.parentAps.api.WeatherResponse.City
 import com.parentAps.api.WeatherService
 import com.parentAps.data.AppDatabase
 import com.parentAps.data.extensions.getRawTextFile
-import com.parentAps.ui.main.data.WeatherRemoteDataSource
+import com.parentAps.ui.data.WeatherRemoteDataSource
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineScope

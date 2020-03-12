@@ -1,4 +1,4 @@
-package com.parentAps.ui.main.data.model
+package com.parentAps.ui.data.model
 
 import androidx.annotation.NonNull
 import androidx.room.Entity

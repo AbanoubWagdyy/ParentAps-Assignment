@@ -1,7 +1,6 @@
 package com.parentAps.api
 
 import com.parentAps.api.WeatherResponse.WeatherRes
-import com.parentAps.ui.main.data.model.Weather
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

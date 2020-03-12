@@ -25,8 +25,6 @@
         </activity>
         <activity android:name=".ui.main.ui.WeatherActivity" />
         <activity android:name=".ui.weatherDetails.WeatherDetailsActivity" />
-        <activity android:name=".ui.homepageWeatherList.HomepageWeatherListActivity" />
-        <activity android:name=".ui.homepageWeatherDetails.HomepageWeatherDetailsActivity" />
     </application>
 
 </manifest>

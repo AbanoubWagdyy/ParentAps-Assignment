@@ -1,8 +1,8 @@
 package com.parentAps.api.WeatherResponse
 
 import com.google.gson.Gson
-import com.parentAps.ui.main.data.model.Weather
-import com.parentAps.ui.main.data.model.WeatherInfo
+import com.parentAps.ui.data.model.Weather
+import com.parentAps.ui.data.model.WeatherInfo
 
 data class WeatherRes(
     val city: City?,

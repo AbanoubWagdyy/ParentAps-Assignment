@@ -5,8 +5,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.parentAps.api.WeatherResponse.City
 import com.parentAps.data.Result
-import com.parentAps.ui.main.data.WeatherRepository
-import com.parentAps.ui.main.data.model.Weather
+import com.parentAps.ui.data.WeatherRepository
+import com.parentAps.ui.data.model.Weather
 import javax.inject.Inject
 
 class WeatherViewModel @Inject constructor(
@@ -37,7 +37,11 @@ class WeatherViewModel @Inject constructor(
         mRepository.saveCityId(cityId.toInt())
     }
 
-    fun getSavedCity(): Weather? {
+    fun getSavedCityWeather(): Weather? {
         return mRepository.getSavedWeatherCity().value?.get(0)
+    }
+
+    fun deleteSavedCity() {
+        mRepository.deleteSavedCityWeather()
     }
 }

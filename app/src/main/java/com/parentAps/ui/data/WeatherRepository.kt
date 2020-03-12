@@ -1,13 +1,10 @@
-package com.parentAps.ui.main.data
+package com.parentAps.ui.data
 
 import androidx.lifecycle.LiveData
-import com.google.gson.Gson
-import com.parentAps.api.WeatherResponse.WeatherRes
+import com.parentAps.api.WeatherResponse.City
 import com.parentAps.data.Result
 import com.parentAps.data.resultLiveData
-import com.parentAps.ui.main.data.model.Weather
-import com.parentAps.ui.main.data.model.WeatherInfo
-import retrofit2.Response
+import com.parentAps.ui.data.model.Weather
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -43,5 +40,11 @@ class WeatherRepository @Inject constructor(
 
     fun getSavedWeatherCity(): LiveData<List<Weather>> {
         return dao.getCityWeather(selectedCityId.toString())
+    }
+
+    fun deleteSavedCityWeather() {
+        val weather = dao.getCityWeatherForDelete(selectedCityId.toString())
+        if (weather.isNotEmpty())
+            dao.delete(weather[0])
     }
 }

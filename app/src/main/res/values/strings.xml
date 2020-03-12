@@ -4,4 +4,13 @@
     <string name="search">Search</string>
     <string name="view_homepage_cities">View Saved Weather</string>
     <string name="add_to_homepage">Add to Homepage</string>
+    <string name="day1">Day 1</string>
+    <string name="day2">Day 2</string>
+    <string name="day3">Day 3</string>
+    <string name="day4">Day 4</string>
+    <string name="day5">Day 5</string>
+    <string name="main">Main</string>
+    <string name="description">Description</string>
+    <string name="speed">Speed</string>
+    <string name="degree">Degree</string>
 </resources>

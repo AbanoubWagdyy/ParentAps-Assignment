@@ -4,9 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.parentAps.ui.main.data.WeatherDao
-import com.parentAps.ui.main.data.model.Weather
+import com.parentAps.ui.data.WeatherDao
+import com.parentAps.ui.data.model.Weather
 
 @Database(
     entities = [Weather::class],

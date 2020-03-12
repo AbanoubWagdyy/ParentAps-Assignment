@@ -1,11 +1,8 @@
-package com.parentAps.ui.main.data
+package com.parentAps.ui.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.parentAps.ui.main.data.model.Weather
+import androidx.room.*
+import com.parentAps.ui.data.model.Weather
 
 @Dao
 interface WeatherDao {
@@ -13,9 +10,15 @@ interface WeatherDao {
     @Query("SELECT * FROM weather WHERE cityId = :cityId")
     fun getCityWeather(cityId: String): LiveData<List<Weather>>
 
+    @Query("SELECT * FROM weather WHERE cityId = :cityId")
+    fun getCityWeatherForDelete(cityId: String): List<Weather>
+
     @Query("SELECT * FROM weather")
     fun getAllCityWeather(): LiveData<List<Weather>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(weather: Weather): Long
+
+    @Delete
+    fun delete(weather: Weather)
 }
