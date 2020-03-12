@@ -16,7 +16,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.parentAps.R
-import com.parentAps.api.WeatherResponse.City
 import com.parentAps.data.Result
 import com.parentAps.data.extensions.hide
 import com.parentAps.data.extensions.hideKeyboard
@@ -32,9 +31,6 @@ class WeatherActivity : AppCompatActivity(), Injectable {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    @Inject
-    lateinit var cityList: List<City>
 
     private lateinit var viewModel: WeatherViewModel
 
@@ -80,11 +76,11 @@ class WeatherActivity : AppCompatActivity(), Injectable {
                             result.data?.let {
                                 if (it.isNotEmpty()) {
                                     viewModel.saveCity(it[0].cityId)
-                                     val intent =
-                                         Intent(
-                                             this@WeatherActivity,
-                                             WeatherDetailsActivity::class.java
-                                         )
+                                    val intent =
+                                        Intent(
+                                            this@WeatherActivity,
+                                            WeatherDetailsActivity::class.java
+                                        )
                                     startActivity(intent)
                                 }
                             }
@@ -155,6 +151,33 @@ class WeatherActivity : AppCompatActivity(), Injectable {
                         return
                     }
                 }
+
+                viewModel.getWeather(getString(R.string.default_city_when_location_denied))
+                    ?.observe(this, Observer { result ->
+                        when (result.status) {
+                            Result.Status.SUCCESS -> {
+                                progressBar.hide()
+                                Log.d("result", result.data.toString())
+                                result.data?.let {
+                                    if (it.isNotEmpty()) {
+                                        viewModel.saveCity(it[0].cityId)
+                                        val intent =
+                                            Intent(
+                                                this@WeatherActivity,
+                                                WeatherDetailsActivity::class.java
+                                            )
+                                        startActivity(intent)
+                                    }
+                                }
+                            }
+                            Result.Status.LOADING -> progressBar.show()
+                            Result.Status.ERROR -> {
+                                progressBar.hide()
+                                Log.d("Error", "Error")
+                            }
+                        }
+                    })
+
             }
         }
     }

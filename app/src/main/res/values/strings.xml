@@ -13,4 +13,5 @@
     <string name="description">Description</string>
     <string name="speed">Speed</string>
     <string name="degree">Degree</string>
+    <string name="default_city_when_location_denied">London</string>
 </resources>

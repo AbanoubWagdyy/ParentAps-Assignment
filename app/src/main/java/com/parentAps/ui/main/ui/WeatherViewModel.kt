@@ -15,6 +15,9 @@ class WeatherViewModel @Inject constructor(
 ) : ViewModel() {
 
     fun getWeather(city: String): LiveData<Result<List<Weather>>>? {
+        if (city.equals("")) {
+            return null
+        }
         val selectedCity = cityList.filter {
             it.name == city
         }
@@ -37,8 +40,8 @@ class WeatherViewModel @Inject constructor(
         mRepository.saveCityId(cityId.toInt())
     }
 
-    fun getSavedCityWeather(): Weather? {
-        return mRepository.getSavedWeatherCity().value?.get(0)
+    fun getSavedCityWeather(): LiveData<List<Weather>> {
+        return mRepository.getSavedWeatherCity()
     }
 
     fun deleteSavedCity() {
