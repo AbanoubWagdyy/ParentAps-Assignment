@@ -12,8 +12,7 @@ data class Result<out T>(val status: Status, val data: T?, val message: String?)
     enum class Status {
         SUCCESS,
         ERROR,
-        SHOW_LOADING,
-        HIDE_LOADING
+        LOADING
     }
 
     companion object {
@@ -25,12 +24,8 @@ data class Result<out T>(val status: Status, val data: T?, val message: String?)
             return Result(Status.ERROR, data, message)
         }
 
-        fun <T> showloading(data: T? = null): Result<T> {
-            return Result(Status.SHOW_LOADING, data, null)
-        }
-
-        fun <T> hideloading(data: T? = null): Result<T> {
-            return Result(Status.HIDE_LOADING, data, null)
+        fun <T> loading(data: T? = null): Result<T> {
+            return Result(Status.LOADING, data, null)
         }
     }
 }

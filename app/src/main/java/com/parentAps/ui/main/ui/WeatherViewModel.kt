@@ -33,12 +33,8 @@ class WeatherViewModel @Inject constructor(
         return cityNames
     }
 
-    fun saveCity(city: String) {
-        val selectedCityId = cityList.filter {
-            it.name == city
-        }[0].id
-
-        mRepository.saveCityId(selectedCityId)
+    fun saveCity(cityId: String) {
+        mRepository.saveCityId(cityId.toInt())
     }
 
     fun getSavedCity(): Weather? {

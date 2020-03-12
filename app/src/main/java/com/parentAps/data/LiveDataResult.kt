@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.lifecycle.map
 import kotlinx.coroutines.Dispatchers
+import com.parentAps.data.Result.Status.*
 
 /**
  * The database serves as the single source of truth.
@@ -13,21 +14,18 @@ import kotlinx.coroutines.Dispatchers
  * [Result.Status.ERROR] - if error has occurred from any source
  * [Result.Status.LOADING]
  */
-fun <T, A> resultLiveData(
-    databaseQuery: () -> LiveData<T>,
-    networkCall: suspend () -> Result<A>,
-    saveCallResult: suspend (A) -> Unit
-): LiveData<Result<T>> =
+fun <T, A> resultLiveData(databaseQuery: () -> LiveData<T>,
+                          networkCall: suspend () -> Result<A>,
+                          saveCallResult: suspend (A) -> Unit): LiveData<Result<T>> =
     liveData(Dispatchers.IO) {
-        emit(Result.showloading<T>())
+        emit(Result.loading<T>())
         val source = databaseQuery.invoke().map { Result.success(it) }
+        emitSource(source)
+
         val responseStatus = networkCall.invoke()
-        if (responseStatus.status == Result.Status.SUCCESS) {
-            emit(Result.hideloading<T>())
+        if (responseStatus.status == SUCCESS) {
             saveCallResult(responseStatus.data!!)
-            emitSource(source)
-        } else if (responseStatus.status == Result.Status.ERROR) {
-            emit(Result.hideloading<T>())
+        } else if (responseStatus.status == ERROR) {
             emit(Result.error<T>(responseStatus.message!!))
             emitSource(source)
         }

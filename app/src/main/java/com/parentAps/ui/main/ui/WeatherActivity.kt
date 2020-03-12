@@ -79,15 +79,23 @@ class WeatherActivity : AppCompatActivity(), Injectable {
                 ?.observe(this, Observer { result ->
                     when (result.status) {
                         Result.Status.SUCCESS -> {
+                            progressBar.hide()
                             Log.d("result", result.data.toString())
-                            viewModel.saveCity(autoCompleteCity.text.toString())
-                            val intent =
-                                Intent(this@WeatherActivity, WeatherDetailsActivity::class.java)
-                            startActivity(intent)
+                            result.data?.let {
+                                if (it.isNotEmpty()) {
+                                    viewModel.saveCity(it[0].cityId)
+                                     val intent =
+                                         Intent(
+                                             this@WeatherActivity,
+                                             WeatherDetailsActivity::class.java
+                                         )
+                                    startActivity(intent)
+                                }
+                            }
                         }
-                        Result.Status.SHOW_LOADING -> progressBar.show()
-                        Result.Status.HIDE_LOADING -> progressBar.hide()
+                        Result.Status.LOADING -> progressBar.show()
                         Result.Status.ERROR -> {
+                            progressBar.hide()
                             Log.d("Error", "Error")
                         }
                     }
